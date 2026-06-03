@@ -4,9 +4,10 @@ import minescript as m
 from java import JavaClass
 
 Minecraft = JavaClass("net.minecraft.client.Minecraft")
+RecipeDisplayId = JavaClass("net.minecraft.world.item.crafting.display.RecipeDisplayId")
+ServerboundPlaceRecipePacket = JavaClass("net.minecraft.network.protocol.game.ServerboundPlaceRecipePacket")
 mc = Minecraft.getInstance()
 player = mc.player
-RecipeDisplayId = JavaClass("net.minecraft.world.item.crafting.display.RecipeDisplayId")
 
 def get_field(obj, field_name):
     cls = obj.getClass()
@@ -87,3 +88,13 @@ def get_recipes_id(item_name: str) -> int | None:
 
     m.echo(f"Error: item recipe not known: {item_name}")
     return None
+
+
+def autofill_recipe(item_name: str):
+    """
+    item_name must be a valid ItemStack.item
+    """
+    try:
+        mc.getConnection().send(ServerboundPlaceRecipePacket(mc.player.containerMenu.containerId, RecipeDisplayId(get_recipes_id(item_name)), True)) # type: ignore
+    except Exception as e:
+        m.echo(f"Error: {e}")
