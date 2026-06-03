@@ -7,7 +7,7 @@ RecipeDisplayId = JavaClass("net.minecraft.world.item.crafting.display.RecipeDis
 ServerboundPlaceRecipePacket = JavaClass("net.minecraft.network.protocol.game.ServerboundPlaceRecipePacket")
 mc = Minecraft.getInstance() # type: ignore
 
-def autofill_craft_item(item_name: str):
+def autofill_recipe(item_name: str):
     """
     item_name must be a valid ItemStack.item
     """
