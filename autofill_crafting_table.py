@@ -8,6 +8,9 @@ ServerboundPlaceRecipePacket = JavaClass("net.minecraft.network.protocol.game.Se
 mc = Minecraft.getInstance() # type: ignore
 
 def autofill_craft_item(item_name: str):
+    """
+    item_name must be a valid ItemStack.item
+    """
     try:
         mc.getConnection().send(ServerboundPlaceRecipePacket(mc.player.containerMenu.containerId, RecipeDisplayId(get_recipes_id(item_name)), True)) # type: ignore
     except Exception as e:
