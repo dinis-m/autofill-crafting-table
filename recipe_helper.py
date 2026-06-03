@@ -41,10 +41,6 @@ def write_recipes_to_file(path: str = r"minescript\known_recipes.txt") -> None:
     """
     Write recipe data to a text file for easier inspection.
 
-    The supplied content is written to the given path using UTF-8 encoding.
-    Before writing, each comma in the content is replaced with a comma followed
-    by a newline, so long recipe strings are split into more readable lines.
-
     Args:
         path: The file path to write the recipe data to. Defaults to
             ``minescript\\known_recipes.txt``.
@@ -70,10 +66,6 @@ def write_recipes_to_file(path: str = r"minescript\known_recipes.txt") -> None:
 def get_recipes_id(item_name: str) -> int | None:
     """
     Return the recipe display index for a given Minecraft item.
-
-    Searches through ``recipe_pairs`` for an item ID matching ``item_name``.
-    If a matching item is found, its associated recipe index is returned.
-    If no matching recipe is found, an error message string is returned instead.
 
     Args:
         item_name: The full Minecraft item ID to search for, such as
