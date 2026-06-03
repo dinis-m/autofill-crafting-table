@@ -9,7 +9,7 @@ mc = Minecraft.getInstance() # type: ignore
 
 def autofill_recipe(item_name: str):
     """
-    item_name must be a valid ItemStack.item
+    item_name must be a valid item like "minecraft:stick" 
     """
     try:
         mc.getConnection().send(ServerboundPlaceRecipePacket(mc.player.containerMenu.containerId, RecipeDisplayId(get_recipes_id(item_name)), True)) # type: ignore
